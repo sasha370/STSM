@@ -8,7 +8,11 @@ class StocksController < ApplicationController
       @stock = Stock.new_lookup(params[:stock])
       # Проверяем создалась ли переменная, если Даб то отрисовываем результат
       if @stock
-        render 'users/my_portfolio'
+        # Если переменная создалась, то отправляем данные в форму для JS
+        respond_to do |format|
+          format.js {render partial: 'users/result'}
+        end
+
       else
         # если нет, то перенаправляем на новый ввод и сообщаем о ошибке
         flash[:alert] = "Пожалуйста введите ПРАВИЛЬНОЕ название Акции"
