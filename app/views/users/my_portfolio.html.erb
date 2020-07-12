@@ -1,0 +1,19 @@
+<h1>Мой портфель</h1>
+<div class="search-area">
+  <h3> Поиск Акций </h3>
+  <%= form_tag '#', method: :get do %>
+    <div class="form-group row">
+      <div class="col-sm-9 no-right-pd">
+        <!--      В строку URL подставятся значение stock= aaaa, где вместо ааа будет сначение stock-->
+        <%= text_field_tag :stock, params[:stock], placeholder: 'Название Акции', autofocus: true, class: "form-control form-control-lg" %>
+
+      </div>
+      <div class="col-sm-3 no-left-pd">
+        <%= button_tag type: :submit, class: "btn btn-success" do %>
+          <i class="fa fa-search fa-2x"></i>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
