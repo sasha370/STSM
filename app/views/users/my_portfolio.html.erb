@@ -2,7 +2,7 @@
 <div class="search-area">
   <h3> Поиск Акций </h3>
 
-<!--  remote: true  говорит о том, что теперь это запрос AAJAX а не http. но для получения результата нужно написать обработчик-->
+  <!--  remote: true  говорит о том, что теперь это запрос AAJAX а не http. но для получения результата нужно написать обработчик-->
   <%= form_tag search_stock_path, remote: true, method: :get do %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-pd">
@@ -17,6 +17,8 @@
     </div>
   <% end %>
 </div>
-<div id = 'result'>
-<!--ДИВ в который мпропишется JS  из _results.js.erb-->
+<div id='result'>
+  <!--ДИВ в который мпропишется JS  из _results.js.erb-->
 </div>
+
+<%= render 'stocks/list' %>
