@@ -26,6 +26,7 @@ class Stock < ApplicationRecord
 
   # Вспоиогательный метод для контроллера UserStocks, который проверяет наличии Stock в БД
   def self.check_db(ticker_symbol)
+    # перед where должен стоять Имя класса, но т.к  мы внутри него, то Stocks не пишем
     where(ticker: ticker_symbol).first
   end
 
