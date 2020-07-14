@@ -22,4 +22,11 @@ class Stock < ApplicationRecord
       return nil
     end
   end
+
+
+  # Вспоиогательный метод для контроллера UserStocks, который проверяет наличии Stock в БД
+  def self.check_db(ticker_symbol)
+    where(ticker: ticker_symbol).first
+  end
+
 end

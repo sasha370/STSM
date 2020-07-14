@@ -8,5 +8,6 @@
     <strong>Название: </strong> <%= @stock.ticker %>
     <strong>Компания: </strong> <%= @stock.name %>
     <strong>Цена: </strong> <%= @stock.last_price %>
+    <%= link_to "Добавить в портфель", user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-sm btn-success", method: :post %>
   </div>
 <% end %>
