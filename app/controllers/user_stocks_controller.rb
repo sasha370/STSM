@@ -16,4 +16,18 @@ class UserStocksController < ApplicationController
     flash[:notice] = " Акции #{stock.name} успешно добавлены в портфель"
     redirect_to my_portfolio_path
   end
+
+
+  def destroy
+    # отыскиваем нашу Акцию в БД по переданному ID в url
+    stock = Stock.find(params[:id])
+    # Затем в таблице взаимоотношений ищем usera по текущему пользователю, а Акцию по найденому ID выше
+    # но, т.к. результат выдает массив, мы берем первое значение - как отдельный объект
+    user_stock = UserStock.where( user_id: current_user.id, stock_id: stock.id).first
+    user_stock.delete
+    flash[:notice]= "Акции #{stock.name} были удалены из вашего портфеля"
+    redirect_to my_portfolio_path
+  end
+
+
 end

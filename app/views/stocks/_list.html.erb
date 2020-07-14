@@ -9,7 +9,7 @@
           <th scope="col">Акция</th>
           <th scope="col">Организация</th>
           <th scope="col">Цена</th>
-          <th scope="col">Действие</th>
+          <th scope="col" class="text-center">Действие</th>
         </tr>
         </thead>
         <tbody>
@@ -21,8 +21,11 @@
               <%= stock.name %></td>
             <td>
               <%= stock.last_price %></td>
-            <td>
-              <%= "Action placeholder" %></td>
+            <td class="text-center">
+<!--              В кнопку Удалить нам надо отправить по маршруту и передать текущую Акцию, т.к. в таблице UserStock он нам нужен -->
+<!--              как и userID, который мы получим из current_user-->
+              <%= link_to "Удалить", user_stock_path(stock), method: :delete, data: {confirm: "Вы уверены?"},
+                                                                  class: "btn btn-sm btn-warning"%></td>
           </tr>
         <% end %>
         </tbody>
