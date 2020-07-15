@@ -29,5 +29,4 @@ class Stock < ApplicationRecord
     # перед where должен стоять Имя класса, но т.к  мы внутри него, то Stocks не пишем
     where(ticker: ticker_symbol).first
   end
-
 end
