@@ -78,5 +78,11 @@ class User < ApplicationRecord
         users.reject{|user| user.id == self.id}
   end
 
+  # Метод проверяет есть ли текущий данный Пользователь в друзьях у текущего
+  def not_friends_with?(id_of_friend)
+    # Ищем по БД среди друзей по ID и возвращаем NOT! т.к. проверяем на НЕ существование
+    !self.friends.where(id: id_of_friend).exists?
+  end
+
 
 end
