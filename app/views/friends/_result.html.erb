@@ -17,7 +17,7 @@
             <!--            Проверяем есть ли уже в друзьях этот объект-->
             <% if current_user.not_friends_with?(friend.id) %>
               <!--              Если нет, то вставляем кнопку-->
-              <%= link_to "Добавить в друзья", "#", class: "btn btn-sm btn-success", method: :post %>
+              <%= link_to "Добавить в друзья", friendships_path(friend: friend), class: "btn btn-sm btn-success", method: :post %>
               <!--              Если есть, то пишем сообщение-->
             <% else %>
               <span class='badge badge-secondary'>Вы друзья</span>
