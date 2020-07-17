@@ -26,8 +26,8 @@
 </div>
 
 
-<%# if !@tracked_stocks.empty? %>
+<% if !@tracked_stocks.empty? %>
 <%= render 'stocks/list' %>
-<%# else  %>
+<% else  %>
 <p class="lead"> Этот пользователь не подписан на какие-либо Акции </p>
-<%# end %>
+<% end %>

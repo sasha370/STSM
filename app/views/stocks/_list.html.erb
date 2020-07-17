@@ -1,4 +1,3 @@
-
 <% if !@tracked_stocks.empty? %>
   <div class="row">
     <div class="col-9">
@@ -21,11 +20,35 @@
               <%= stock.name %></td>
             <td>
               <%= stock.last_price %></td>
+
             <td class="text-center">
-<!--              В кнопку Удалить нам надо отправить по маршруту и передать текущую Акцию, т.к. в таблице UserStock он нам нужен -->
-<!--              как и userID, который мы получим из current_user-->
-              <%= link_to "Удалить", user_stock_path(stock), method: :delete, data: {confirm: "Вы уверены?"},
-                                                                  class: "btn btn-sm btn-warning"%></td>
+              <!--    Проверяем может ли user добавить текущуюю акцию себе ( т.е не более 10 и ее пока нет в портфеле-->
+              <% if current_user.can_track_stock?(stock.ticker) %>
+                <!--      если условие прошло, то показываем кнопку Добавить-->
+                <%= link_to "Добавить в портфель", user_stocks_path(user: current_user, ticker: stock.ticker), class: "btn btn-sm btn-success", method: :post %>
+
+              <% elsif current_user.id != @user.id %>
+
+                <!--      если нет то показываем блок по условиям-->
+                <span class="badge badge-secondary">
+                  <!--      если превышен лимит, то дописываем 10ть-->
+                  Вы уже отслеживаете
+                  <% if !current_user.under_stock_limit? %>      максимум (10 Акций)
+        <% end %>
+                  <!--        если уже отслеживает, то предупреждаем-->
+                  <% if current_user.stock_already_tracked?(stock.ticker) %>        эти акции
+                    </span>
+                        <% end %>
+              <% end %>
+              <!--      В кнопку Удалить нам надо отправить по маршруту и передать текущую Акцию, т.к. в таблице UserStock он нам нужен -->
+              <!--              как и userID, который мы получим из current_user
+              Но показываем ее только если это текущий пользователь-->
+
+              <% if current_user.id == @user.id %>
+                <%= link_to "Удалить", user_stock_path(stock), method: :delete, data: { confirm: "Вы уверены?" },
+                            class: "btn btn-sm btn-warning" %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
         </tbody>

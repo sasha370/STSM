@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def my_portfolio
     # Выбирем все акции, которые привызанны к текущему пользователю. Current_user обеспечен Devise
     @tracked_stocks = current_user.stocks
+    # Данная переменная нужна, чтобы понимать, что @user - это текущий пользователь и ему можно показывать некоторые кнопки
+    @user = current_user
   end
 
   def my_friends
