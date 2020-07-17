@@ -20,10 +20,9 @@
           <td>
             <%= friend.email %></td>
           <td class="text-center">
-            <!--              В кнопку Удалить нам надо отправить по маршруту и передать текущую Акцию, т.к. в таблице UserStock он нам нужен -->
-            <!--              как и userID, который мы получим из current_user-->
-            <%= link_to "Отписаться", friendship_path(friend), method: :delete, data: {confirm: "Вы уверены?"},
-                        class: "btn btn-sm btn-warning"%></td>
+            <%= link_to "См.профиль ", user_path(friend), class: "btn btn-sm btn-success" %>
+            <%= link_to "Отписаться", friendship_path(friend), method: :delete, data: { confirm: "Вы уверены?" },
+                        class: "btn btn-sm btn-warning" %></td>
         </tr>
       <% end %>
       </tbody>

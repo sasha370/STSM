@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Добавить в друзья и удалить реализовано через Friendship
   # После генерации удалил Вьюхи и GETs которые прописались автоматом
   resources :friendships, only: [:create, :destroy]
+  resources :users, only: [:show], :constraints => { :id => /[0-9|]+/ }
 
   root 'welcome#index'
   get 'my_portfolio', to: 'users#my_portfolio'

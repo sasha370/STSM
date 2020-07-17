@@ -1,0 +1,33 @@
+<h2> Профиль пользователя </h2>
+
+
+<div class="card card-header result-block">
+  <table class="col-md-12">
+    <tbody>
+
+    </tbody>
+    <tr>
+      <td><strong> Имя: </strong> <%= @user.first_name %></td>
+      <td><strong> Фамилия: </strong> <%= @user.last_name %></td>
+      <td><strong> Email: </strong> <%= @user.email %></td>
+      <td>
+
+        <% if current_user.not_friends_with?(@user.id) %>
+                  <!--              Т.к. по ссылке на friendship иетодом post мы не можем предеать IDБ то передаем в скобках параметр с присвоеным зщначение-->
+          <%= link_to "Добавить в друзья", friendships_path(friend: @user), class: "btn btn-sm btn-success", method: :post %>
+          <!--              Если есть, то пишем сообщение-->
+        <% else %>
+          <span class='badge badge-primary'>Вы друзья</span>
+        <% end %>
+      </td>
+
+    </tr>
+  </table>
+</div>
+
+
+<%# if !@tracked_stocks.empty? %>
+<%= render 'stocks/list' %>
+<%# else  %>
+<p class="lead"> Этот пользователь не подписан на какие-либо Акции </p>
+<%# end %>

@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
 
 
+  def show
+    @user = User.find(params[:id])
+    @tracked_stocks = @user.stocks
+  end
+
+
+
   def my_portfolio
     # Выбирем все акции, которые привызанны к текущему пользователю. Current_user обеспечен Devise
     @tracked_stocks = current_user.stocks

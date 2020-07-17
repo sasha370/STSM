@@ -13,14 +13,15 @@
           <td><strong> Фамилия: </strong> <%= friend.last_name %></td>
           <td><strong> Email: </strong> <%= friend.email %></td>
           <td><strong> Действия: </strong>
-            <%= link_to "см.Профиль", '#', class: "btn btn-sm btn-success" %>
+            <%= link_to "см.Профиль", user_path(friend), class: "btn btn-sm btn-success" %>
             <!--            Проверяем есть ли уже в друзьях этот объект-->
             <% if current_user.not_friends_with?(friend.id) %>
               <!--              Если нет, то вставляем кнопку-->
+<!--              Т.к. по ссылке на friendship иетодом post мы не можем предеать IDБ то передаем в скобках параметр с присвоеным зщначение-->
               <%= link_to "Добавить в друзья", friendships_path(friend: friend), class: "btn btn-sm btn-success", method: :post %>
               <!--              Если есть, то пишем сообщение-->
             <% else %>
-              <span class='badge badge-secondary'>Вы друзья</span>
+              <span class='badge badge-primary'>Вы друзья</span>
             <% end %>
           </td>
       <% end %>
