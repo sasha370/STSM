@@ -3,13 +3,20 @@
   <%= render 'layouts/messages' %>
 </div>
 
-<% if @friend %>
+<% if @friends %>
   <div class="card card-header result-block">
-    <strong>Email: </strong> <%= @friend.email %>
-    <strong>Имя: </strong> <%= @friend.first_name %>
-    <strong>Фамилия: </strong> <%= @friend.last_name %>
-
-    <%= link_to "Добавить в друзья", "#", class: "btn btn-sm btn-success", method: :post %>
-
+    <table class="col-md-12">
+      <tbody>
+      <% @friends.each do |friend| %>
+        </tbody>
+        <tr>
+          <td><strong>  Имя: </strong> <%= friend.first_name %></td>
+          <td><strong>  Фамилия: </strong> <%= friend.last_name %></td>
+          <td><strong>  Email: </strong> <%= friend.email %></td>
+          <td><strong>  Действия: </strong> <%= link_to "см.Профиль", '#', class: "btn btn-sm btn-success" %>
+            <%= link_to "Добавить в друзья", "#", class: "btn btn-sm btn-success", method: :post %></td>
+      <% end %>
+      </tr>
+      </table>
   </div>
 <% end %>

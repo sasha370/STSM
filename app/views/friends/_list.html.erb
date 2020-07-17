@@ -4,21 +4,21 @@
     <table class="table table-bordered table-hover">
       <thead>
       <tr>
-        <th scope="col">Email</th>
         <th scope="col">Имя</th>
         <th scope="col">Фамилия</th>
+        <th scope="col">Email</th>
         <th scope="col" class="text-center">Действие</th>
       </tr>
       </thead>
       <tbody>
       <% @friends.each do |friend| %>
         <tr>
-          <th scope="row">
-            <%= friend.email %></th>
           <td>
-            <%= friend.first_name %></td>
+            <%= friend.first_name %>  </td>
           <td>
             <%= friend.last_name %></td>
+          <td>
+            <%= friend.email %></td>
           <td class="text-center">
             <!--              В кнопку Удалить нам надо отправить по маршруту и передать текущую Акцию, т.к. в таблице UserStock он нам нужен -->
             <!--              как и userID, который мы получим из current_user-->

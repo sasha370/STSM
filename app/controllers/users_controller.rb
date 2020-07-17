@@ -11,41 +11,32 @@ class UsersController < ApplicationController
   end
 
   def search
-
     # Первая проверка: передал ли ПОИСК в params хоть чтото?
     if params[:friend].present?
       # Если есть такой атрибут, то создаем с помощью модели Переменную или получаем NIL, если с сайта пришла ошибка
-      @friend = params[:friend]
+      # Используя метод Search из User.rb создаем список найденых друзей
+      @friends = User.search(params[:friend])
+      # Данный метод удаляет текущего пользователя из результатов поиска
+      @friends = current_user.except_current_user(@friends)
       # Проверяем создалась ли переменная, если Даб то отрисовываем результат
-      if @friend
+      if @friends
         # Если переменная создалась, то отправляем данные в форму для JS
         respond_to do |format|
           format.js { render partial: 'friends/result' }
         end
-
       else
-        # если нет, то перенаправляем на новый ввод и сообщаем о ошибке
-        # flash[:alert] = "Пожалуйста введите ПРАВИЛЬНОЕ название Акции"
-        # redirect_to my_portfolio_path
-
-        # Заменео на JS
+        # TODO
         respond_to do |format|
           flash.now[:alert] = "Никого не найдено по этим данным"
           format.js { render partial: 'friends/result' }
         end
       end
-      # Если в params отсутвует поле stock, то значит был поиск по пустой строке
+      # Если в params отсутвует поле friend, то значит был поиск по пустой строке
     else
-      # flash[:alert] = "Пожалуйста введите название Акции"
-      # redirect_to my_portfolio_path
-
-      # Заменео на JS
       respond_to do |format|
         flash.now[:alert] = "Пожалуйста введите Имя или Email друга"
         format.js { render partial: 'friends/result' }
       end
     end
   end
-
-
 end

@@ -35,8 +35,48 @@ class User < ApplicationRecord
   end
 
   def full_name
-    return  "#{first_name} #{last_name}" if first_name || last_name
+    return "#{first_name} #{last_name}" if first_name || last_name
     "Гость"
   end
+
+  # SEARCH - объединяющий метод для поиска
+  # Подготовка строки для поиска
+  # Сначала обрезаем все пробельные символы
+  def self.search(param)
+    param.strip!
+    # затем в переменную записываем результаты поисковых запросов , но выбираем только Uniq? чтобы не дублировались
+    to_send_back = (first_name_matches(param) + last_name_matches(param) + email_name_matches(param)).uniq
+    # Вернуть нил, если нет результатов
+    return nil unless to_send_back
+    # Или вернуть результат
+    to_send_back
+  end
+
+  # Поиск по полю Имя
+  def self.first_name_matches(param)
+    matches('first_name', param)
+  end
+
+  # оиск по полю Фамилия
+  def self.last_name_matches(param)
+    matches('last_name', param)
+  end
+  # Поиск по email
+  def self.email_name_matches(param)
+    matches('email', param)
+  end
+
+
+  # Метод для созданияи запроса в БД
+  # В качестве field_name будет передаваться Email или имя, в качесте записи %...%  - шаблон для поиска
+  def self.matches(field_name, param)
+    where("#{field_name} like ?", "%#{param}%")
+  end
+
+  # Метод удаляет из списка текущего пользователя, если его ID равен ID - current_user, у которого вызвали этот метод
+  def except_current_user(users)
+        users.reject{|user| user.id == self.id}
+  end
+
 
 end
