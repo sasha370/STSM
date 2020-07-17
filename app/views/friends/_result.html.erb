@@ -1,0 +1,15 @@
+<div class="result-block">
+
+  <%= render 'layouts/messages' %>
+</div>
+
+<% if @friend %>
+  <div class="card card-header result-block">
+    <strong>Email: </strong> <%= @friend.email %>
+    <strong>Имя: </strong> <%= @friend.first_name %>
+    <strong>Фамилия: </strong> <%= @friend.last_name %>
+
+    <%= link_to "Добавить в друзья", "#", class: "btn btn-sm btn-success", method: :post %>
+
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="search-area">
+  <h3> Поиск Друзей  </h3>
+
+  <!--  remote: true  говорит о том, что теперь это запрос AAJAX а не http. но для получения результата нужно написать обработчик-->
+  <%= form_tag search_friend_path, remote: true, method: :get do %>
+    <div class="form-group row">
+      <div class="col-sm-9 no-right-pd">
+        <!--      В строку URL подставятся значение stock= aaaa, где вместо ааа будет сначение stock-->
+        <%= text_field_tag :friend, params[:friend], placeholder: 'Введите Email или Имя', autofocus: true, class: "form-control form-control-lg" %>
+      </div>
+      <div class="col-sm-3 no-left-pd">
+        <%= button_tag type: :submit, class: "btn btn-success" do %>
+          <i class="fa fa-search fa-2x"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div id='result' class="mb-3">
+  <!--ДИВ в который мпропишется JS  из _results.js.erb-->
+</div>
