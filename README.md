@@ -1,6 +1,8 @@
 Это приложение объединяет в себе социальную сеть и финансовый трекер.
 Сделано на основании курса с UDEMY.
 
+Heroku: https://finance-tracker-bootestrap.herokuapp.com/ 
+
 Использованно:
 1) Bootstrap
 2) Devise
