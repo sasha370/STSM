@@ -1,5 +1,3 @@
-<!-- Вызов перенесен в _result для реализации через JS -->
-
   <% flash.each do |name, msg| %>
     <div class="alert   <%= (name == 'notice') ? "alert-success" : "alert-danger" %> %>   alert-dismissible fade show" role="alert">
       <%= msg %>
