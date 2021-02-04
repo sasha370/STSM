@@ -9,19 +9,14 @@
     <strong>Компания: </strong> <%= @stock.name %>
     <strong>Цена: </strong> <%= @stock.last_price %>
 
-    <!--    Проверяем может ли user добавить текущуюю акцию себе ( т.е не более 10 и ее пока нет в портфеле-->
     <% if current_user.can_track_stock?(@stock.ticker) %>
-      <!--      если условие прошло, то показываем кнопку Добавить-->
       <%= link_to "Добавить в портфель", user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-sm btn-success", method: :post %>
     <% else %>
-      <!--      если нет то показываем блок по условиям-->
       <span class="badge badge-secondary">
       Вы уже отслеживаете
-        <!--      если превышен лимит, то дописываем 10ть-->
         <% if !current_user.under_stock_limit? %>
       максимум (10 Акций)
         <% end %>
-        <!--        если уже отслеживает, то предупреждаем-->
         <% if current_user.stock_already_tracked?(@stock.ticker) %>
         эти акции
           </span>
