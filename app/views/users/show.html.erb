@@ -1,6 +1,5 @@
 <h2> Профиль пользователя </h2>
 
-
 <div class="card card-header result-block">
   <table class="col-md-12">
     <tbody>
@@ -13,14 +12,11 @@
       <td>
 
         <% if current_user.not_friends_with?(@user.id) %>
-                  <!--              Т.к. по ссылке на friendship иетодом post мы не можем предеать IDБ то передаем в скобках параметр с присвоеным зщначение-->
           <%= link_to "Добавить в друзья", friendships_path(friend: @user), class: "btn btn-sm btn-success", method: :post %>
-          <!--              Если есть, то пишем сообщение-->
         <% else %>
           <span class='badge badge-primary'>Вы друзья</span>
         <% end %>
       </td>
-
     </tr>
   </table>
 </div>
